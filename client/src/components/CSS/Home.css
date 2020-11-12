@@ -34,7 +34,7 @@
 }
 .roomSchedule{
     box-sizing: border-box;
-    padding-top: calc(100vw / 50);
+    padding-top: 30px;
     padding-left: calc(100vw / 100);
     padding-right: calc(100vw / 100);
 }
@@ -70,4 +70,20 @@
 }
 .blue h3{
     color: rgb(78, 114, 255);
+}
+
+.homeComp .roomOverlay{
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(100vh / 5 + 80px);
+    padding: 20px;
+    background-color: white;
+    width: calc(100vw / 4.5);
+    height: calc(70vh - 80px);
+    border-radius: 50px;
+}
+@media (max-width: 950px){
+    .homeComp .roomOverlay{
+        border-radius: 0;
+    }
 }
