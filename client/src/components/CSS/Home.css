@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+}
+.homeComp{
+    position: absolute;
+    width: calc(100vw - (100vw / 8));
+    height: 100vh;
+    left: calc(100vw / 8);
+    top: 50%;
+    transform: translate(0%, -50%);
+    z-index: 1;
+}
+.homeComp h1{
+    font-weight: 400;
+    /* text-shadow: grey 0px 0px 12px; */
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.roomTicket{
+    width: calc(100vw / 4.5);
+    height: 70vh;
+    position: absolute;
+    top: calc(100vh / 5);
+    box-shadow: 5px 0px 20px #ababab;
+}
+.roomTicket h3{
+    box-sizing: border-box;
+    width: 100%;
+    padding: calc(100vw / 50);
+    font-size: calc(100vw / 40);
+    font-weight: 300;
+}
+.roomSchedule{
+    box-sizing: border-box;
+    padding-top: calc(100vw / 50);
+    padding-left: calc(100vw / 100);
+    padding-right: calc(100vw / 100);
+}
+.meeting{
+    margin-bottom: 15px;
+}
+.meetingTime{
+    box-sizing: border-box;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+.pink{
+    background-color: rgb(255, 214, 238);
+    left: calc(100% / 15);
+    border-top-left-radius: calc(100vw / 10);
+}
+.pink h3{
+    text-align: right;
+    color: hotpink;
+}
+.orange{
+    background-color: rgb(255, 226, 182);
+    left: calc(100% / 2.8);
+}
+.orange h3{
+    text-align: center;
+    color: orange;
+}
+.blue{
+    background-color: rgb(191, 217, 255);
+    left: calc(100% / 1.55);
+    border-top-right-radius: calc(100vw / 10);
+}
+.blue h3{
+    color: rgb(78, 114, 255);
+}

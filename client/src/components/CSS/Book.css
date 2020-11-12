@@ -1,0 +1,91 @@
+.bookComp{
+    position: absolute;
+    width: calc(100vw - (100vw / 8));
+    height: 100vh;
+    left: calc(100vw / 8);
+    top: 50%;
+    transform: translate(0%, -50%);
+    /* background-color: rgb(234, 234, 234); */
+}
+
+.roomSelection{
+    /* border: solid 1px black; */
+    width: calc(100vw / 4);
+    height: 50vh;
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    box-shadow: 5px 0px 20px #ababab;
+    border-top-left-radius: calc(100vw / 10);
+}
+.roomSelection h3{
+    box-sizing: border-box;
+    width: 100%;
+    padding: calc(100vw / 50);
+    font-size: calc(100vw / 40);
+    font-weight: 300;
+    position: absolute;
+    text-align: right;
+}
+.roomSelection form{
+    height: calc((50vh) - 30%);
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.roomSelection form input, .roomSelection form label{
+    flex: 50%;
+    width: calc(100vw / 8);
+}
+.roomSelection form label{
+    box-sizing: border-box;
+    padding-left: 40px;
+}
+.roomSelection button{
+    width: calc(100vw / 7);
+}
+.bookComp h1{
+    font-weight: 400;
+    /* text-shadow: grey 0px 0px 12px; */
+    position: absolute;
+    top: 6%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.meetingDetails{
+    /* border: 1px solid black; */
+    width: calc(100vw / 2);
+    height: 70vh;
+    position: absolute;
+    left: 38%;
+    top: 20%;
+    box-shadow: 5px 0px 20px #ababab;
+    border-top-right-radius: calc(100vw / 10);
+    border-bottom-left-radius: calc(100vw / 10);
+}
+.helpInfo{
+    position: absolute;
+    width: calc(100vw / 4);
+    left: 5%;
+    top: calc(20% + 55vh);
+}
+
+
+.edit-overlay{
+    border: 1px solid black;
+    background-color:white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 50vw;
+    padding: 5%;
+    height: 35vh;
+    width: 50vw;
+    border-radius: 20px;
+}
+
+
+
