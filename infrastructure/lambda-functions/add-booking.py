@@ -1,9 +1,21 @@
 import json
 import boto3
 from boto3.dynamodb.conditions import Key
+dynamodb = boto3.resource('dynamodb', region_name='eu-west-2')
+
+def query_booking(event):
+	table = dynamodb.Table('Room-Bookings')
+	response = table.query(
+		KeyConditionExpression=Key('roomName').eq(event['queryStringParameters']['roomName'])
+	)
+	bookings = response['Items']
+	for booking in bookings:
+		if booking['date'] == event['queryStringParameters']['date'] and booking['time'] == event['queryStringParameters']['time']:
+			return True
+		else:
+			return False
 
 def query_room(event):
-    dynamodb = boto3.resource('dynamodb', region_name='eu-west-2')
     table = dynamodb.Table('Meeting-Rooms')
     response = table.query(
         KeyConditionExpression=Key('roomName').eq(event['queryStringParameters']['roomName'])
@@ -13,14 +25,19 @@ def query_room(event):
 
 def lambda_handler(event, context):
 	room = query_room(event)
-	print(room[0]['capacity'])
-	print(event['queryStringParameters']['capacity'])
+	print(query_booking(event))
+	isBooking = query_booking(event)
+	#print(room[0]['capacity'])
+	#print(event['queryStringParameters']['capacity'])
+	if isBooking:
+		return {
+			'body': json.dumps({'Message': "Sorry! This room already has a meeting booked at this time."})
+		}
 	if not room:
 		return {
 			'body': json.dumps({'Message': "Sorry! The room you entered doesn't exist, check your spelling and try again."})
 		}		
 	if int(room[0]['capacity']) >= int(event['queryStringParameters']['capacity']):
-		dynamodb = boto3.resource('dynamodb', region_name='eu-west-2')
 		table = dynamodb.Table('Room-Bookings')
 		table.put_item(
 			Item = {
