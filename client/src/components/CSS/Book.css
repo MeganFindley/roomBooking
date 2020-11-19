@@ -87,5 +87,30 @@
     border-radius: 20px;
 }
 
+@media (max-width: 1024px) and (orientation: portrait){
+    *{
+        box-sizing: border-box;
+    }
+    .bookComp{
+        left: 0;
+        top: 15vh;
+        transform: translate(0%, 0%);
+        position: fixed;
+        overflow: auto;
+        width: 100vw;
+        height: 85vh;
+    }
+    .bookComp h1{
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 100vw;
+        margin-top: 10%;
+        position: relative;
+        font-size: calc(100vw / 20);
+    }
+}
+
 
 
