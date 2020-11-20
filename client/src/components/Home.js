@@ -19,7 +19,7 @@ function Home() {
     let bookings = [];
 
     useEffect(() => {
-        const newReturnAllBookings = async () => {
+        const returnAllBookings = async () => {
             await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking')
             .then(response => response.json())
             .then(data => bookings = data);
@@ -34,7 +34,7 @@ function Home() {
             };
             setMeetings({ pink: pinkMeetings, orange: orangeMeetings, blue: blueMeetings });
         };
-        newReturnAllBookings();
+        returnAllBookings();
 
         const returnRooms = async () => {
             await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms')
