@@ -1,3 +1,6 @@
+*{
+    box-sizing: border-box;
+}
 .bookComp{
     position: absolute;
     width: calc(100vw - (100vw / 8));
@@ -7,7 +10,6 @@
     transform: translate(0%, -50%);
     /* background-color: rgb(234, 234, 234); */
 }
-
 .roomSelection{
     /* border: solid 1px black; */
     width: calc(100vw / 4);
@@ -19,14 +21,18 @@
     border-top-left-radius: calc(100vw / 10);
 }
 .roomSelection h3{
-    box-sizing: border-box;
-    width: 100%;
-    padding: calc(100vw / 50);
-    font-size: calc(100vw / 40);
-    font-weight: 300;
-    position: absolute;
     text-align: right;
 }
+.meetingDetails h3{
+    text-align: center;
+}
+.meetingDetails h3, .roomSelection h3{
+    width: 100%;
+    padding: 2vw;
+    font-size: 2.5vw;
+    font-weight: 300;
+    position: relative;
+} 
 .roomSelection form{
     height: calc((50vh) - 30%);
     position: absolute;
@@ -38,8 +44,19 @@
     flex: 50%;
     width: calc(100vw / 8);
 }
-.roomSelection form label{
-    box-sizing: border-box;
+.meetingDetails form label{
+    flex: calc(50% - 40px);
+}
+.meetingDetails form input{
+    width: 200px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 0px 0px 2px 1px #ababab;
+    margin-right: 40px;
+}
+.roomSelection form label, .meetingDetails form label{
     padding-left: 40px;
 }
 .roomSelection button{
@@ -47,14 +64,12 @@
 }
 .bookComp h1{
     font-weight: 400;
-    /* text-shadow: grey 0px 0px 12px; */
     position: absolute;
     top: 6%;
     left: 50%;
     transform: translate(-50%, 0%);
 }
 .meetingDetails{
-    /* border: 1px solid black; */
     width: calc(100vw / 2);
     height: 70vh;
     position: absolute;
@@ -63,6 +78,13 @@
     box-shadow: 5px 0px 20px #ababab;
     border-top-right-radius: calc(100vw / 10);
     border-bottom-left-radius: calc(100vw / 10);
+}
+.meetingDetails form{
+    height: calc((100vh) - 60%);
+    position: absolute;
+    /* top: 30%; */
+    display: flex;
+    flex-wrap: wrap;
 }
 .helpInfo{
     position: absolute;

@@ -97,7 +97,7 @@
 }
 .roomOverlay p span{
     float: right;
-    margin-right: 5vw;
+    margin-right: 0;
 }
 
 @media (max-width: 1024px) and (orientation: portrait){
@@ -208,9 +208,11 @@
     .roomOverlay p{
         font-size: calc(100vw / 35);
         margin-bottom: 10px;
-        margin-left: 30px;
+        margin-left: 3vw;
     }
-    
+    .roomOverlay p span{
+        margin-right: 3vw;
+    }
 }
 @media (max-width: 767px) and (orientation: portrait){
     .roomTicket{
