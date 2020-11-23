@@ -12,10 +12,20 @@
 }
 .homeComp h1{
     font-weight: 400;
-    /* text-shadow: grey 0px 0px 12px; */
     position: absolute;
-    top: 6%;
+    top: 3%;
     left: 50%;
+    width: 80vw;
+    text-align: center;
+    transform: translate(-50%, 0%);
+}
+.homeComp h2{
+    font-weight: 200;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    width: 80vw;
+    text-align: center;
     transform: translate(-50%, 0%);
 }
 .roomTicket{
@@ -82,8 +92,174 @@
     height: calc(70vh - 80px);
     border-radius: 50px;
 }
-@media (max-width: 950px){
+.close{
+    display: none;
+}
+.roomOverlay p span{
+    float: right;
+    margin-right: 0;
+}
+
+@media (max-width: 1024px) and (orientation: portrait){
+    *{
+        box-sizing: border-box;
+    }
+    .homeComp{
+        left: 0;
+        top: 15vh;
+        transform: translate(0%, 0%);
+        position: fixed;
+        overflow: auto;
+        width: 100vw;
+        height: 85vh;
+    }
+    .homeComp h1{
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 100vw;
+        margin-top: 7%;
+        margin-bottom: 3%;
+        position: relative;
+        font-size: calc(100vw / 20);
+    }
+    .homeComp h2{
+        font-weight: 200;
+        font-size: calc(100vw / 30);
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        width: 100vw;
+        margin-bottom: 7%;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+    }
+    .roomTicket{
+        height: auto;
+        width: 95vw;
+        position: relative;
+        top: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-bottom: 5%;
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+        border-radius: 7px;
+        left: 0;
+    }
+    .roomTicket h3{
+        font-size: calc(100vw / 20);
+        text-align: center;
+    }
+    .meeting{
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .meeting span{
+        font-size: calc(100vw / 40);
+    }
     .homeComp .roomOverlay{
+        width: 60vw;
+        height: 30vh;
+        position: fixed;
+        top: 30%;
+        left: 20% !important;
+        border-radius: 10px; 
+        box-shadow: rgba(0,0,0,0.6) 0px 0px 100px 100px;
+        z-index: 7;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: space-between;
+    }
+    .close{
+        z-index: 5;
+        top: -2vw;
+        right: -2vw;
+        position: absolute;
+        display: block;
+        float: right;
+        border-radius: 50%;
+        height: 5vw;
+        width: 5vw;
+        padding: 0;
+        line-height: 0px;
+        text-align: center;
+    }
+    .close span{
+        font-size: 7.5vw;
+        font-weight: 100;
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        margin: 0;
+        padding: 0;
+    }
+    .roomOverlay h3{
+        text-align: center;
+        margin-bottom: 5%;
+        margin-top: 2.5%;
+        font-size: calc(100vw / 30);
+        font-weight: 300;
+    }
+    .roomOverlay p{
+        font-size: calc(100vw / 35);
+        margin-bottom: 10px;
+        margin-left: 3vw;
+    }
+    .roomOverlay p span{
+        margin-right: 3vw;
+    }
+}
+@media (max-width: 767px) and (orientation: portrait){
+    .roomTicket{
+        margin-left: 0;
+        margin-right: 0;
+        width: 100vw;
         border-radius: 0;
+    }
+    .homeComp h1, .roomTicket h3{
+        font-size: calc(100vw / 13);
+    }
+    .homeComp h2{
+        font-size: calc(100vw / 20);
+    }
+    .meeting{
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .meeting span{
+        font-size: calc(100vw / 20);
+    }
+    .homeComp .roomOverlay{
+        width: 80vw;
+        height: 50vh;
+        top: 30%;
+        left: 10% !important;
+        box-shadow: rgba(0,0,0,0.6) 0px 0px 0 100vw;
+    }
+    .close {
+        top: -3vw;
+        right: -3vw;
+        height: 8vw;
+        width: 8vw;
+        padding: 0;
+        font-size: 5vw;
+    }
+    .close span{
+        font-size: 12vw;
+        font-weight: 100;
+    }
+    .roomOverlay h3{
+        font-size: calc(100vw / 15);
+        margin-bottom: 5vw;
+    }
+    .roomOverlay p{
+        font-size: calc(100vw / 22);
+        margin-left: 3vw;
+        margin-bottom: 3vw;
     }
 }

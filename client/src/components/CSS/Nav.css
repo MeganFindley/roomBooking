@@ -34,3 +34,30 @@ img {
     color: black;
     font-weight: 400;
 }
+
+@media (max-width: 1024px) and (orientation: portrait){
+    img {
+        width: calc(100vw / 6);
+        max-width: 100px;
+    }
+    .navComp ul{
+        justify-content: space-evenly;
+        width: 100vw;
+        height: 15vh;
+    }
+    .navComp ul li{
+        margin: 0 0 0px 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .navComp ul li a span{
+        flex: 100%;
+        text-align: center;
+        font-size: large;
+    }
+}
+@media (max-width: 767px) and (orientation: portrait){
+    .navComp ul li a span{
+        display: none;
+    }
+}
