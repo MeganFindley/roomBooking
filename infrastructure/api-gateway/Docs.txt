@@ -1,0 +1,125 @@
+MEROBOS API
+
+DESCRIPTION
+MEROBOS API is designed to assist in the making of a front end application for a meeting room booking system.
+MEROBOS API is organized around REST. Our API has resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
+AUTHENTICATION
+MEROBOS API so far requires no authentication and can be accessed by anyone, from anywhere.
+ERRORS
+MEROBOS API uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with Stripe's servers (these are rare).
+
+Initially you have access to three meeting rooms, all of which come with default data
+First Room:
+	roomName: 'Blue',
+	capacity: 2,
+	phone: true,
+	projector: false,
+	tvScreen: false,
+	wheelchairAccess: true,
+	bookedStatus: false
+Second Room:
+	roomName: 'Orange',
+	capacity: 10,
+	phone: true,
+	projector: false,
+	tvScreen: true,
+	wheelchairAccess: false,
+	bookedStatus: false
+Third Room:
+	roomName: 'Pink',
+	capacity: 5,
+	phone: false,
+	projector: true,
+	tvScreen: false,
+	wheelchairAccess: true,
+	bookedStatus: false
+
+ENDPOINTS
+There are a variety of endpoints that all call different methods. All endpoints are either simple GET or POST requests.
+All examples will be written in Javascript, fetch and JSON.
+
+RETURN ALL ROOMS - GET Request
+The first endpoint you can hit will return all of the rooms from the Database.
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms'
+This will return a JSON encoded object.
+
+An example of how to use this to print out all the rooms:
+returnAllRooms = async () => {
+	await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking')
+	  .then(response => response.json())
+	  .then(data => data.map((item, index) => {
+			console.log(item)
+		}));
+}
+An example of what will be logged to the console:
+	{"capacity": "2", "bookedStatus": false, "projector": false, "tvScreen": false, "roomName": Blue, "phone": true, "wheelchairAccess": true}, 
+	{"capacity": "10", "bookedStatus": false, "projector": false, "tvScreen": true, "roomName": "Orange", "phone": true, "wheelchairAccess": false}, 
+	{"capacity": "5", "bookedStatus": false, "projector": true, "tvScreen": false, "roomName": "Pink", "phone": false, "wheelchairAccess": true}
+
+ADD A BOOKING - POST Request
+The second endpoint you can hit will add a booking to the Database
+Each booking must have the following data:
+	'roomName': 'Blue',
+	'capacity': 5,
+	'date': '2020-11-19',
+	'time': '12:00',
+	'duration': 15,
+	'meetingName': 'Meeting Name',
+	'meetingHost': 'Meeting Host',
+
+Please note - although the date is in string format it must be YYYY-MM-DD
+            - the duration is how many minutes the meeting will last
+            - the time must be in 24 hour format
+
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/add-booking'
+This will return a JSON encoded object
+
+An example of how to use this:
+meetingInfo = {
+	'roomName': 'Blue',
+	'capacity': 5,
+	'date': '2020-11-19',
+	'time': '12:00',
+	'duration': 15,
+	'meetingName': 'Stand Up',
+	'meetingHost': 'John Smith',
+}
+const addBooking = async () => {
+        await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "queryStringParameters": meetingInfo }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": {"Message:": "Successfully added booking"}
+}
+
+RETURN ALL BOOKINGS - GET Request
+The third endpoint you can hit will return all the bookings in the Database
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking'
+This will return a JSON encoded object.
+
+An example of how to print all the bookings to the console:
+returnAllBookings = async () => {
+	await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/return-booking')
+	  .then(response => response.json())
+	  .then(data => data.map((item, index) => {
+			console.log(item)
+		}));
+}
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": [{"meetingName": "Stand Up", "capacity": 17, "date": "2020-11-09", "meetingHost": "Dev Team", "time": "09:00", "roomName": "Blue", "duration": "25"}, 
+           {"meetingName": "Proposal", "capacity": 2, "date": "2020-11-19", "meetingHost": "Meg", "time": "15:00", "roomName": "Blue", "duration": 10}, 
+           {"meetingName": "Stand Up", "capacity": 7, "date": "2020-11-09", "meetingHost": "Meg", "time": "05:31", "roomName": "Orange", "duration": "60"}]
+}
