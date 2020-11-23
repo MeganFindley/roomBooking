@@ -28,7 +28,7 @@ function Book() {
     const addBooking = async (e) => {
         e.preventDefault();
         console.log(meetingInfo);
-        await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking', {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/add-booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
