@@ -3,29 +3,28 @@ import './CSS/Home.css';
 import Checkmark from 'react-checkmark'
 
 function Home() {
-    const bookings = [];
     const pinkMeetings = [];
     const orangeMeetings = [];
     const blueMeetings = [];
     const [meetings, setMeetings] = useState({ pink: [], orange: [], blue: [] });
     const today = new Date().toISOString().slice(0, 10);
 
-    const rooms = [];
+    let rooms = [];
     const [roomInfo, setRoomInfo] = useState({});
     const [overlay, setOverlay] = useState({ show: false })
     const pinkStyle = { left: 'calc(100% / 15)', backgroundColor: 'rgb(255, 214, 238)', closeColor2: 'hotpink', closeColor1: 'rgb(255, 214, 238)', closeBorder: '1px solid hotpink' };
     const blueStyle = { left: 'calc(100% / 1.55)', backgroundColor: 'rgb(191, 217, 255)', closeColor2: 'rgb(78, 114, 255)', closeColor1: 'rgb(191, 217, 255)', closeBorder: '1px solid rgb(78, 114, 255)' };
     const orangeStyle = { left: 'calc(100% / 2.8)', backgroundColor: 'rgb(255, 226, 182)', closeColor2: 'orange', closeColor1: 'rgb(255, 226, 182)', closeBorder: '1px solid orange' };
 
-    const [overlayStyle, setOverlayStyle] = useState({});
+    const [overlayStyle, setOverlayStyle] = useState({}); 
+    let bookings = [];
 
     useEffect(() => {
-        const returnBookings = async () => {
-            await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/returnbookings')
-                .then(response => response.json())
-                .then(data => JSON.parse(data.body).map((item, index) => {
-                    bookings.push(item);
-                }));
+        const returnAllBookings = async () => {
+            await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking')
+            .then(response => response.json())
+            .then(data => bookings = data);
+
             console.log(bookings);
             for (let i = 0; i < bookings.length; i++) {
                 if (bookings[i].date === today) {
@@ -36,15 +35,13 @@ function Home() {
             };
             setMeetings({ pink: pinkMeetings, orange: orangeMeetings, blue: blueMeetings });
         };
-        returnBookings();
+        returnAllBookings();
+
         const returnRooms = async () => {
-            await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking')
+            await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms')
                 .then(response => response.json())
-                .then(data => JSON.parse(data.body).map((item, index) => {
-                    rooms.push(item);
-                }));
-            console.log(rooms);
-            setRoomInfo({ blue: rooms[0], orange: rooms[1], pink: rooms[2] });
+                .then(data => rooms = data);
+            setRoomInfo({blue: rooms[0], orange: rooms[1], pink: rooms[2]});
         };
         returnRooms();
 
