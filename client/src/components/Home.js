@@ -125,7 +125,7 @@ function Home() {
                 <div className='roomOverlay' style={{ display: overlay.show ? 'block' : 'none', left: overlayStyle.left, backgroundColor: overlayStyle.backgroundColor }}>
                     <button className='close' style={{ backgroundColor: overlayStyle.closeColor2, color: overlayStyle.closeColor1, border: 'none'}} onClick={toggleOverlay}><span>x</span></button>
                     <h3 style={{color: overlayStyle.closeColor2}}>{roomInfo.viewroom ? roomInfo.viewroom.roomName.toUpperCase() : ' '} ROOMS CAPABILITIES</h3>
-                    <p>Capacity: <span>{roomInfo.viewroom ? roomInfo.viewroom.capacity :  ' '}</span></p>
+                    <p>Capacity: <span>{roomInfo.viewroom ? roomInfo.viewroom.roomCapacity :  ' '}</span></p>
                     <p>Phone: <span>{roomInfo.viewroom ? (roomInfo.viewroom.phone ? '✓' : '✗') : ' '}</span></p>
                     <p>Projector: <span>{roomInfo.viewroom ? (roomInfo.viewroom.projector ? '✓' : '✗') : ' '}</span></p>
                     <p>Tv: <span>{roomInfo.viewroom ? (roomInfo.viewroom.tvScreen ? '✓' : '✗') : ' '}</span></p>
