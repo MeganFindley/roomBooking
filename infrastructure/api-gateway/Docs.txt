@@ -1,5 +1,5 @@
 MEROBOS API
-
+--------------
 DESCRIPTION
 MEROBOS API is designed to assist in the making of a front end application for a meeting room booking system.
 MEROBOS API is organized around REST. Our API has resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes.
@@ -7,7 +7,7 @@ AUTHENTICATION
 MEROBOS API so far requires no authentication and can be accessed by anyone, from anywhere.
 ERRORS
 MEROBOS API uses conventional HTTP response codes to indicate the success or failure of an API request. In general: Codes in the 2xx range indicate success. Codes in the 4xx range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.). Codes in the 5xx range indicate an error with Stripe's servers (these are rare).
-
+--------------
 Initially you have access to three meeting rooms, all of which come with default data
 First Room:
 	roomName: 'Blue',
@@ -33,11 +33,11 @@ Third Room:
 	tvScreen: false,
 	wheelchairAccess: true,
 	bookedStatus: false
-
+--------------
 ENDPOINTS
 There are a variety of endpoints that all call different methods. All endpoints are either simple GET or POST requests.
 All examples will be written in Javascript, fetch and JSON.
-
+--------------
 RETURN ALL ROOMS - GET Request
 The first endpoint you can hit will return all of the rooms from the Database.
 The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms'
@@ -55,7 +55,7 @@ An example of what will be logged to the console:
 	{"capacity": "2", "bookedStatus": false, "projector": false, "tvScreen": false, "roomName": Blue, "phone": true, "wheelchairAccess": true}, 
 	{"capacity": "10", "bookedStatus": false, "projector": false, "tvScreen": true, "roomName": "Orange", "phone": true, "wheelchairAccess": false}, 
 	{"capacity": "5", "bookedStatus": false, "projector": true, "tvScreen": false, "roomName": "Pink", "phone": false, "wheelchairAccess": true}
-
+--------------
 ADD A BOOKING - POST Request
 The second endpoint you can hit will add a booking to the Database
 Each booking must have the following data:
@@ -101,7 +101,7 @@ An example of what will be logged to the console:
   "statusCode": 200,
   "body": {"Message:": "Successfully added booking"}
 }
-
+--------------
 RETURN ALL BOOKINGS - GET Request
 The third endpoint you can hit will return all the bookings in the Database
 The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking'
@@ -122,4 +122,49 @@ An example of what will be logged to the console:
   "body": [{"meetingName": "Stand Up", "capacity": 17, "date": "2020-11-09", "meetingHost": "Dev Team", "time": "09:00", "roomName": "Blue", "duration": "25"}, 
            {"meetingName": "Proposal", "capacity": 2, "date": "2020-11-19", "meetingHost": "Meg", "time": "15:00", "roomName": "Blue", "duration": 10}, 
            {"meetingName": "Stand Up", "capacity": 7, "date": "2020-11-09", "meetingHost": "Meg", "time": "05:31", "roomName": "Orange", "duration": "60"}]
+}
+--------------
+UPDATE A ROOM - POST Request
+The last endpoint you can hit will update a rooms specifications
+Each update must have the following data:
+	'roomName': 'Blue',
+	'roomCapacity': 5,
+	'phone': true,
+	'projector': false,
+	'tvScreen': true,
+	'wheelchairAccess': false,
+
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/update-room'
+This will return a JSON encoded object
+
+An example of how to use this:
+newRoomSpecifications = {
+	'roomName': 'Blue',
+	'roomCapacity': 5,
+	'phone': true,
+	'projector': false,
+	'tvScreen': true,
+	'wheelchairAccess': false,
+}
+const addBooking = async () => {
+        await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "queryStringParameters": newRoomSpecifications }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": "{Attributes: 
+				{projector: false, tvScreen: true, roomCapacity: 10, phone: false, wheelchairAccess: false}, 
+			ResponseMetadata:
+				{RequestId: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, HTTPStatusCode: 200, HTTPHeaders: {server: Server, date: Thu, 26 Nov 2020 13:56:28 GMT, content-type: application/x-amz-json-1.0, content-length: 147, connection: keep-alive, x-amzn-requestid: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, x-amz-crc32: 722209551}, RetryAttempts: 0}
+			}",
+  "message": "Room updated successfully"
 }
