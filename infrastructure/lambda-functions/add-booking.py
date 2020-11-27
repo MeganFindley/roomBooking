@@ -7,16 +7,16 @@ dynamodb = boto3.resource('dynamodb', region_name='eu-west-2')
 
 def lambda_handler(event, context):
 	room_to_be_booked = query_room(event)
-	room_capacity = int(room_to_be_booked[0]['capacity'])
+	room_capacity = int(room_to_be_booked[0]['roomCapacity'])
 	room_is_booked = query_booking(event)
 	requested_booking_capacity = int(event['queryStringParameters']['capacity'])
 	if room_is_booked:
 		return {
-			'body': json.dumps({'Message': "Sorry! This room already has a meeting booked at this time."})
+			'body': {'Message': "Sorry! This room already has a meeting booked at this time."}
 		}
 	if not room_to_be_booked:
 		return {
-			'body': json.dumps({'Message': "Sorry! The room you entered doesn't exist, check your spelling and try again."})
+			'body': {'Message': "Sorry! The room you entered doesn't exist, check your spelling and try again."}
 		}
 	if room_capacity >= requested_booking_capacity:
 		table = dynamodb.Table('Room-Bookings')
@@ -33,12 +33,12 @@ def lambda_handler(event, context):
 		)
 		return {
     	    'statusCode': 200,
-    	    'body': json.dumps({'Message:': "Successfully added booking"}),
+    	    'body': {'Message:': "Successfully added booking"},
     	}
 	else:
-		message = 'Sorry! This room only has a capacity of ' + room[0]['capacity'] + '.'
+		message = 'Sorry! This room only has a capacity of ' + room_to_be_booked[0]['roomCapacity'] + '.'
 		return {
-			'body': json.dumps({'Message': message})
+			'body': {'Message': message}
 		}
 	
 def query_room(event):
@@ -51,9 +51,12 @@ def query_room(event):
 def query_booking(event):
 	table = dynamodb.Table('Room-Bookings')
 	response = table.query(
-		KeyConditionExpression=Key('roomName').eq(event['queryStringParameters']['roomName']) & Key('date').eq(event['queryStringParameters']['date'])
+		KeyConditionExpression=Key('roomName').eq(event['queryStringParameters']['roomName'])
 	)
-	bookings = response['Items']
+	bookings = []
+	for booking in response['Items']:
+		if booking['date'] == event['queryStringParameters']['date']:
+			bookings.append(booking)
 	print(bookings)
 	if not bookings:
 		return False
