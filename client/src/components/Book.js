@@ -69,8 +69,7 @@ function Book() {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                setResponse({message: data.body.Message, show: true});
-                console.log(response);
+                setResponse({message: data.body.message, show: true});
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -80,9 +79,9 @@ function Book() {
     const okResponse = (e) => {
         e.preventDefault();
         setResponse({...response, show: false});
-        // if(response.message.slice(0,5) !== 'Sorry'){
-        //     history.goBack()
-        // }
+        if(response.message.slice(0,5) !== 'Sorry'){
+            history.goBack()
+        }
     }
     let rooms = [];
     const [roomInfo, setRoomInfo] = useState({});

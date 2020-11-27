@@ -89,7 +89,7 @@ function Home() {
                                 <span style={{ fontWeight: "bold" }} key='time' className='meetingTime'>{meeting.time}:</span>
                                 <span style={{ fontWeight: "bold" }} key='name' className='meetingName'>{meeting.meetingName}</span>
                                 <br></br>
-                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} {meeting.duration > 1 ? 'hours' : 'hour'} and has {meeting.capacity} people attending.</span>
+                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} minutes and has {meeting.capacity} people attending.</span>
                             </div>
                         ))}
                     </div>
@@ -102,7 +102,7 @@ function Home() {
                                 <span style={{ fontWeight: "bold" }} key='time' className='meetingTime'>{meeting.time}:</span>
                                 <span style={{ fontWeight: "bold" }} key='name' className='meetingName'>{meeting.meetingName}</span>
                                 <br></br>
-                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} {meeting.duration > 1 ? 'hours' : 'hour'} and has {meeting.capacity} people attending.</span>
+                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} minutes and has {meeting.capacity} people attending.</span>
                             </div>
                         ))}
                     </div>
@@ -115,7 +115,7 @@ function Home() {
                                 <span style={{ fontWeight: "bold" }} key='time' className='meetingTime'>{meeting.time}:</span>
                                 <span style={{ fontWeight: "bold" }} key='name' className='meetingName'>{meeting.meetingName}</span>
                                 <br></br>
-                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} {meeting.duration > 1 ? 'hours' : 'hour'} and has {meeting.capacity} people attending.</span>
+                                <span key='about' className='meetingAbout'>{meeting.meetingHost}'s meeting will last {meeting.duration} minutes and has {meeting.capacity} people attending.</span>
                             </div>
                         ))}
                     </div>
