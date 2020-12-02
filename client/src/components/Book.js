@@ -2,22 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import './CSS/Book.css'
 
-function Book() {
+function Book(props) {
     const history = useHistory();
     const [meetingInfo, setMeetingInfo] = useState({});
     const [editOn, setEditOn] = useState({ edit: false });
-    const [roomEdits, setRoomEdits] = useState();
+    const [roomEdits, setRoomEdits] = useState({roomName: ''});
     const setData = (e) => {
         setMeetingInfo({
             ...meetingInfo,
             [e.target.name]: e.target.value
         });
         setRoomEdits(roomInfo[e.target.value.toLowerCase()]);
-        console.log(roomEdits);
+        // console.log(roomEdits);
     };
     const toggleEdit = (e) => {
         e.preventDefault();
-        if (roomEdits) {
+        if (roomEdits.roomName !== '') {
             setEditOn({ edit: !editOn.edit });
         };
         if (roomEdits.roomName === 'Pink') {
@@ -59,7 +59,8 @@ function Book() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log('Success:', data);
+                console.log('Success:', data.message);
+                setResponse({...response, show: true, message: data.message});
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -92,7 +93,8 @@ function Book() {
     const okResponse = (e) => {
         e.preventDefault();
         setResponse({ ...response, show: false });
-        if (response.message.slice(0, 5) !== 'Sorry') {
+        if(response.message === 'Room updated successfully'){}
+        else if (response.message.slice(0, 5) !== 'Sorry') {
             history.goBack()
         }
     }
@@ -104,6 +106,7 @@ function Book() {
     const orangeStyle = { backgroundColor: 'rgb(255, 226, 182)', closeColor2: 'orange', closeColor1: 'rgb(255, 226, 182)', closeBorder: '1px solid orange' };
     const [overlayStyle, setOverlayStyle] = useState({});
     useEffect(() => {
+        props.setNavIcon({icon: 'book'});
         const returnRooms = async () => {
             await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms')
                 .then(response => response.json())
@@ -184,7 +187,7 @@ function Book() {
                     <label>Wheelchair Access: </label>
                     <input onChange={setRoomDetail} className='checkbox' checked={roomEdits ? roomEdits.wheelchairAccess : false} type='checkbox' name='wheelchairAccess' /><br></br>
                     <label>Capacity: </label>
-                    <input id='inputCapacity' onChange={setRoomDetail} type='number' name='roomCapacity' value={roomEdits ? roomEdits.roomCapacity : 0} /><br></br>
+                    <input id='inputCapacity' min='1' onChange={setRoomDetail} type='number' name='roomCapacity' value={roomEdits ? roomEdits.roomCapacity : 0} /><br></br>
                     <button type='submit' onClick={updateRoom} style={{ backgroundColor: overlayStyle.closeColor2, color: overlayStyle.closeColor1, border: 'none', fontWeight: '500'}}>CONFIRM</button>
                 </form>
             </div>

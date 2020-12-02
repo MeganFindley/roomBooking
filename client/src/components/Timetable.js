@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import {
   DayPilot,
   DayPilotCalendar,
@@ -62,6 +62,9 @@ class Calendar extends Component {
     };
   }
 
+    useEffect(() => {
+        props.setNavIcon({icon: 'timetable'});
+    }, [])
   async componentDidMount() {
     await fetch(
       "https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking"
