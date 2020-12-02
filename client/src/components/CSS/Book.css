@@ -20,6 +20,14 @@
     box-shadow: 5px 0px 20px #ababab;
     border-top-left-radius: calc(100vw / 10);
 }
+
+element.style {
+}
+div {
+}
+.meetingDetails form div {
+    flex: 100%;
+}
 .roomSelection h3{
     text-align: right;
 }
@@ -74,9 +82,8 @@ input[type="radio"] {
   /* appearance for checked radiobutton */
   input[type="radio"]:checked {
     outline: none;
-    background-color: rgb(45, 45, 45);
   }
-  /* #pinkRadio:checked{
+  #pinkRadio:checked{
     background-color: hotpink;
   }
   #orangeRadio:checked{
@@ -84,7 +91,7 @@ input[type="radio"] {
   }
   #blueRadio:checked{
       background-color: rgb(78, 114, 255); 
-  }*/
+  }
   input[type="radio"]:active {
       outline: none;
   }
@@ -103,7 +110,7 @@ input[type="radio"] {
 .roomSelection form label, .meetingDetails form label{
     padding-left: 40px;
 }
-.roomSelection button, .meetingDetails button{
+.roomSelection button, .meetingDetails button, .edit-overlay form button{
     width: calc(100vw / 10);
     font-size: 1.5vw;
     font-weight: 400;
@@ -146,21 +153,6 @@ input[type="radio"] {
     top: calc(20% + 55vh);
 }
 
-
-.edit-overlay{
-    border: 1px solid black;
-    background-color:white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
-    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 50vw;
-    padding: 5%;
-    height: 35vh;
-    width: 50vw;
-    border-radius: 20px;
-}
 
 @media (max-width: 1024px) and (orientation: portrait){
     *{
@@ -224,4 +216,73 @@ input[type="radio"] {
     animation-duration: 10s;
 	animation-iteration-count: infinite;
 
+}
+
+.bookComp .roomOverlay, .bookComp .edit-overlay{
+    position: absolute;
+    width: calc(100% / 2.5);
+    padding: 20px;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 50vw;
+    border-radius: 10px; 
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.edit-overlay{
+    background-color:white;
+}
+.bookComp .roomOverlay h3, .bookComp .edit-overlay h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.bookComp .edit-overlay label{
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.bookComp .edit-overlay input{
+    float: right;
+    width: 45px;
+}
+#inputCapacity{
+    border: none;
+    box-shadow: 0px 0px 5px #ababab;
+    text-align: right;
+    border-radius: 5px;
+}
+#inputCapacity:focus {
+    outline: none;
+}
+.bookComp .close{
+    z-index: 5;
+    top: -1vw;
+    right: -1vw;
+    position: absolute;
+    display: block;
+    float: right;
+    border-radius: 50%;
+    height: 2.5vw;
+    width: 2.5vw;
+    padding: 0;
+    line-height: 0px;
+    text-align: center;
+}
+.bookComp .close:active{
+    outline: none;
+}
+.bookComp .close span{
+    font-size: 3.5vw;
+    font-weight: 200;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    margin: 0;
+    padding: 0;
+}
+
+
+
+button:focus{
+    outline: none;
 }
