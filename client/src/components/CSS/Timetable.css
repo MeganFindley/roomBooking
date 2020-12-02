@@ -1,0 +1,12 @@
+/* adjusting the built-in theme */
+
+/* calendar event */
+.calendar_default_event_inner {
+  display: flex;
+  background: #2e78d6;
+  color: #fff;
+  border: 2px solid #888;
+  font-size: 10pt;
+  padding: 5px;
+  opacity: 0.8;
+}
