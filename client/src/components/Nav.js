@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './CSS/Nav.css';
 import home from './img/ICONS/home.svg';
@@ -10,43 +10,56 @@ import tableFill from './img/ICONS/timetable-filled.svg';
 
 
 function Nav(props) {
-    console.log(props);
     const homeImgs = { normal: home, fill: homeFill };
     const bookImgs = { normal: book, fill: bookFill };
     const tableImgs = { normal: table, fill: tableFill };
 
-    const [images, setIMG] = useState({ homepage: true, bookpage: false, tablepage: false });
+    // New stuff
+    console.log(props.navIcon.icon);
+    let page = props.navIcon.icon;
 
-    const toggleHome = () => { setIMG({ homepage: true, bookpage: false, tablepage: false }) };
-    const toggleBook = () => { setIMG({ homepage: false, bookpage: true, tablepage: false }) };
-    const toggleTable = () => { setIMG({ homepage: false, bookpage: false, tablepage: true }) };
-
-    const getHomeImg = () => images.homepage ? 'fill' : 'normal';
-    const getBookImg = () => images.bookpage ? 'fill' : 'normal';
-    const getTableImg = () => images.tablepage ? 'fill' : 'normal';
-
-    const homeSVG = getHomeImg();
-    const bookSVG = getBookImg();
-    const tableSVG = getTableImg();
+    // const [icons, setIcons] = useState({ home: homeImgs.fill, book: bookImgs.normal, table: tableImgs.normal });
+    // console.log(icons.home);
+    let [homeicon, setHome] = useState('fill');
+    let [bookicon, setBook] = useState('normal');
+    let [tableicon, setTable] = useState('normal');
+    useEffect(() => {
+        const setSvgs = () => {
+            if (page === 'home') {
+                setHome('fill');
+                setBook('normal');
+                setTable('normal');
+            } else if (page === 'book') {
+                setHome('normal');
+                setBook('fill');
+                setTable('normal');
+            } else if (page === 'timetable') {
+                setHome('normal');
+                setBook('normal');
+                setTable('fill');
+            }
+        }
+        setSvgs()
+    }, [props]);
 
     return (
         <div className='navComp'>
             <ul className='navList'>
-                <li className='pagelink' onClick={toggleHome}>
+                <li className='pagelink'>
                     <Link tag='li' to="/">
-                        <img className='homeIcon' src={homeImgs[homeSVG]} alt='home svg' />
+                        <img className='homeIcon' src={homeImgs[homeicon]} alt='home svg' />
                         <span>DAY VIEW</span>
                     </Link>
                 </li>
-                <li className='pagelink' onClick={toggleBook}>
+                <li className='pagelink'>
                     <Link tag='li' to="/book">
-                        <img className='bookIcon' src={bookImgs[bookSVG]} alt='book svg' />
+                        <img className='bookIcon' src={bookImgs[bookicon]} alt='booking svg' />
                         <span>BOOKING</span>
                     </Link>
                 </li>
-                <li className='pagelink' onClick={toggleTable}>
+                <li className='pagelink'>
                     <Link style={{ textDecoration: 'none' }} tag='li' to="/timetable">
-                        <img className='tableIcon' src={tableImgs[tableSVG]} alt='timetable svg' />
+                        <img className='tableIcon' src={tableImgs[tableicon]} alt='timetable svg' />
                         <span>TIMETABLE</span>
                     </Link>
                 </li>

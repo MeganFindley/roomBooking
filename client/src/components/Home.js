@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CSS/Home.css';
-import Checkmark from 'react-checkmark'
 
-function Home() {
+function Home(props) {
     const pinkMeetings = [];
     const orangeMeetings = [];
     const blueMeetings = [];
@@ -20,12 +19,13 @@ function Home() {
     let bookings = [];
 
     useEffect(() => {
+        props.setNavIcon({icon: 'home'});
         const returnAllBookings = async () => {
             await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking')
             .then(response => response.json())
             .then(data => bookings = data);
 
-            console.log(bookings);
+            // console.log(bookings);
             for (let i = 0; i < bookings.length; i++) {
                 if (bookings[i].date === today) {
                     if (bookings[i].roomName === 'Pink' || bookings[i].roomName === 'pink') { pinkMeetings.push(bookings[i]) }
