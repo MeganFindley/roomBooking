@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import './CSS/Book.css'
 
-function Book() {
+function Book(props) {
     const history = useHistory();
     const [meetingInfo, setMeetingInfo] = useState({});
     const [editOn, setEditOn] = useState({ edit: false });
-    const [roomEdits, setRoomEdits] = useState();
+    const [roomEdits, setRoomEdits] = useState({roomName: ''});
     const setData = (e) => {
         setMeetingInfo({
             ...meetingInfo,
@@ -17,7 +17,7 @@ function Book() {
     };
     const toggleEdit = (e) => {
         e.preventDefault();
-        if (roomEdits) {
+        if (roomEdits.roomName !== '') {
             setEditOn({ edit: !editOn.edit });
         };
         if (roomEdits.roomName === 'Pink') {
@@ -106,6 +106,7 @@ function Book() {
     const orangeStyle = { backgroundColor: 'rgb(255, 226, 182)', closeColor2: 'orange', closeColor1: 'rgb(255, 226, 182)', closeBorder: '1px solid orange' };
     const [overlayStyle, setOverlayStyle] = useState({});
     useEffect(() => {
+        props.setNavIcon({icon: 'book'});
         const returnRooms = async () => {
             await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms')
                 .then(response => response.json())

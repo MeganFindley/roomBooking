@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 
-function Timetable() {
+function Timetable(props) {
+    useEffect(() => {
+        props.setNavIcon({icon: 'timetable'});
+    }, [])
     return (
         <div>
             
