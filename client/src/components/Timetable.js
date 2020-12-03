@@ -12,6 +12,7 @@ const styles = {
   },
   left: {
     width: "200px",
+    marginTop: "15%",
     marginRight: "40px",
     marginLeft: "200px",
   },
@@ -62,69 +63,83 @@ class Calendar extends Component {
     };
   }
 
-  async componentDidMount() {
-    await fetch(
-      "https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking"
-    )
-      .then((response) => response.json())
-      .then((data) => this.manipulateData(data));
+  componentDidMount() {
     let today = new Date().toISOString().slice(0, 10);
     this.setState({ startDate: today });
     this.props.setNavIcon({ icon: "timetable" });
   }
-  manipulateData = (data) => {
+
+  fetchBookings = async (buttonName) => {
+    await fetch(
+      "https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking"
+    )
+      .then((response) => response.json())
+      .then((data) => this.manipulateData(data, buttonName));
+  };
+  sortData = (e) => {
+    let buttonName = e.target.innerText;
+    this.fetchBookings(buttonName);
+  };
+  manipulateData = (data, buttonName) => {
     let bookingsArray = [];
     data.map((item, index) => {
-      let start = new Date(item.date + "T" + item.time + ":00");
-      let end = new Date(start.getTime() + item.duration * 60000);
-      console.log(start);
-      console.log(end);
-      bookingsArray.push({
-        id: item.meetingName,
-        text: item.meetingName + " - " + item.meetingHost,
-        start: start,
-        end: end,
-      });
+      if (item.roomName === buttonName) {
+        let start = new Date(item.date + "T" + item.time + ":00");
+        let end = new Date(start.getTime() + item.duration * 60000);
+        bookingsArray.push({
+          id: item.meetingName,
+          text: item.meetingName + " - " + item.meetingHost,
+          start: start,
+          end: end,
+        });
+      }
     });
     this.setState({
       events: bookingsArray,
     });
   };
-  async componentDidUpdate() {
-    await fetch(
-      "https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-booking"
-    )
-      .then((response) => response.json())
-      .then((data) => this.manipulateData(data));
-  }
 
   render() {
     var { ...config } = this.state;
+    let today = new Date().toISOString().slice(0, 10);
     return (
-      <div style={styles.wrap}>
-        <div style={styles.left}>
-          <DayPilotNavigator
-            selectMode={"week"}
-            showMonths={3}
-            skipMonths={3}
-            startDate={"2020-09-15"}
-            selectionDay={"2021-09-15"}
-            onTimeRangeSelected={(args) => {
-              this.setState({
-                startDate: args.day,
-              });
-            }}
-          />
+      <>
+        <div id="timetable-buttons">
+          <button value="Orange" onClick={this.sortData}>
+            Orange
+          </button>
+          <button value="Blue" onClick={this.sortData}>
+            Blue
+          </button>
+          <button value="Pink" onClick={this.sortData}>
+            Pink
+          </button>
         </div>
-        <div style={styles.main}>
-          <DayPilotCalendar
-            {...config}
-            ref={(component) => {
-              this.calendar = component && component.control;
-            }}
-          />
+        <div style={styles.wrap}>
+          <div style={styles.left}>
+            <DayPilotNavigator
+              selectMode={"week"}
+              showMonths={1}
+              skipMonths={1}
+              startDate={today}
+              selectionDay={"2021-09-15"}
+              onTimeRangeSelected={(args) => {
+                this.setState({
+                  startDate: args.day,
+                });
+              }}
+            />
+          </div>
+          <div style={styles.main}>
+            <DayPilotCalendar
+              {...config}
+              ref={(component) => {
+                this.calendar = component && component.control;
+              }}
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
