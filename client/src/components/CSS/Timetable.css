@@ -10,3 +10,10 @@
   padding: 5px;
   opacity: 0.8;
 }
+
+#timetable-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0px;
+}
