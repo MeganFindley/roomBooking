@@ -15,11 +15,8 @@ function App() {
         <Nav navIcon={navIcon}/>
         <Switch>
           <Route exact path='/' render={()=> <Home setNavIcon={setNavIcon}/>} />
-          {/* <Route exact path='/' component={Home}/> */}
-          <Route exact path='/Book' render={()=> <Book setNavIcon={setNavIcon}/>} />
-          {/* <Route exact path='/Book' component={Book} /> */}
-          <Route exact path='/Timetable' render={()=> <Calendar setNavIcon={setNavIcon}/>} />
-          {/* <Route exact path="/Timetable" component={Timetable} /> */}
+          <Route exact path='/Book' render={()=> <Book setNavIcon={setNavIcon} />} />
+          <Route exact path='/Timetable' render={()=> <Calendar setNavIcon={setNavIcon} />} />
         </Switch>
       </BrowserRouter>
     </React.Fragment>

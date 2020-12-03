@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {
-  DayPilot,
   DayPilotCalendar,
   DayPilotNavigator,
+  DayPilot,
 } from "daypilot-pro-react";
 import "./CSS/Timetable.css";
 
@@ -29,40 +29,17 @@ class Calendar extends Component {
       durationBarVisible: false,
       timeRangeSelectedHandling: "Enabled",
       onTimeRangeSelected: (args) => {
-        let dp = this.calendar;
-        DayPilot.Modal.prompt("Create a new event:", "Event 1").then(function (
-          modal
-        ) {
-          dp.clearSelection();
-          if (!modal.result) {
-            return;
-          }
-          dp.events.add(
-            new DayPilot.Event({
-              start: args.start,
-              end: args.end,
-              id: DayPilot.guid(),
-              text: modal.result,
-            })
-          );
-        });
+        console.log(args.start.value)
+        let eStart = args.start.value.slice(0, 10);
+        let eTime = args.start.value.slice(11, 16);
+        let eRoom = this.state.room;
+        DayPilot.Modal.alert('Redirecting to booking page')
+        .then(window.location = window.location.origin + `/book?start=${eStart}&time=${eTime}&room=${eRoom}`)
       },
-      eventDeleteHandling: "Update",
-      onEventClick: (args) => {
-        let dp = this.calendar;
-        DayPilot.Modal.prompt("Update event text:", args.e.text()).then(
-          function (modal) {
-            if (!modal.result) {
-              return;
-            }
-            args.e.data.text = modal.result;
-            dp.events.update(args.e);
-          }
-        );
-      },
+      eventDeleteHandling: "Disabled",
+      room: '',
     };
   }
-
   componentDidMount() {
     let today = new Date().toISOString().slice(0, 10);
     this.setState({ startDate: today });
@@ -77,7 +54,9 @@ class Calendar extends Component {
       .then((data) => this.manipulateData(data, buttonName));
   };
   sortData = (e) => {
-    let buttonName = e.target.innerText;
+    let buttonName = e.target.value;
+    this.setState({ ...this.state, room: buttonName });
+
     this.fetchBookings(buttonName);
   };
   manipulateData = (data, buttonName) => {
@@ -103,20 +82,20 @@ class Calendar extends Component {
     var { ...config } = this.state;
     let today = new Date().toISOString().slice(0, 10);
     return (
-      <>
+      <div className='tableComp'>
         <div id="timetable-buttons">
           <button value="Orange" onClick={this.sortData}>
-            Orange
+            ORANGE
           </button>
           <button value="Blue" onClick={this.sortData}>
-            Blue
+            BLUE
           </button>
           <button value="Pink" onClick={this.sortData}>
-            Pink
+            PINK
           </button>
         </div>
         <div style={styles.wrap}>
-          <div style={styles.left}>
+          <div style={styles.left} className='weekView'>
             <DayPilotNavigator
               selectMode={"week"}
               showMonths={1}
@@ -130,7 +109,7 @@ class Calendar extends Component {
               }}
             />
           </div>
-          <div style={styles.main}>
+          <div style={styles.main} className='monthView' >
             <DayPilotCalendar
               {...config}
               ref={(component) => {
@@ -139,7 +118,7 @@ class Calendar extends Component {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
