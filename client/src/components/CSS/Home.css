@@ -99,7 +99,7 @@
     float: right;
     margin-right: 0;
 }
-
+/* .homeComp span, .homeComp{} */
 @media (max-width: 1024px) and (orientation: portrait){
     *{
         box-sizing: border-box;
@@ -261,5 +261,30 @@
         font-size: calc(100vw / 22);
         margin-left: 3vw;
         margin-bottom: 3vw;
+    }
+}
+@media (max-width: 823px) and (orientation: landscape){
+    .homeComp h1{
+        font-size: 4vw;
+        position: relative;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        top: 0;
+    }
+    .homeComp h2{
+        font-size: 2.5vw;
+        position: relative;
+        top: 0;
+    }
+    .roomTicket{
+        top: 25vh;
+        height: auto;
+        min-height: 70vh;
+    }
+    .roomSchedule{
+        padding-top: 10px;
+    }
+    .homeComp .meeting span{
+        font-size: calc(100vw / 75);
     }
 }

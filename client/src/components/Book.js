@@ -152,34 +152,35 @@ function Book(props) {
     return (
         <div className='bookComp'>
             <h1>Make a Booking:</h1>
+            <div className='helpInfo'>
+                <p>Click a room name to view information about its facilities. If these don't meet your requirements please click edit to customise your room</p>
+            </div>
             <div className='roomSelection'>
                 <h3>Select Room:</h3>
                 <form id='clear'>
                     <div className='flex'>
                         <label id='pink' style={{ color: 'hotpink' }} onClick={toggleOverlay}>Pink</label>
-                        <input checked={paramRoom ? (paramRoom === 'Pink' ? true : false) : false} id='pinkRadio' type='radio' name='roomName' value='Pink' onChange={setData} />
+                        <input checked={meetingInfo.roomName === 'Pink' ? true : false} className='radioBtn' id='pinkRadio' type='radio' name='roomName' value='Pink' onChange={setData} />
                     </div>
                     <div className='flex'>
                         <label id='orange' style={{ color: 'orange' }} onClick={toggleOverlay}>Orange</label>
-                        <input checked={paramRoom ? (paramRoom === 'Orange' ? true : false) : false} id='orangeRadio' type='radio' name='roomName' value='Orange' onChange={setData} />
+                        <input checked={meetingInfo.roomName === 'Orange' ? true : false} className='radioBtn' id='orangeRadio' type='radio' name='roomName' value='Orange' onChange={setData} />
                     </div>
                     <div className='flex'>
                         <label id='blue' style={{ color: 'rgb(78, 114, 255)' }} onClick={toggleOverlay}>Blue</label>
-                        <input checked={paramRoom ? (paramRoom === 'Blue' ? true : false) : false} id='blueRadio' type='radio' name='roomName' value='Blue' onChange={setData} />
+                        <input checked={meetingInfo.roomName === 'Blue' ? true : false} className='radioBtn' id='blueRadio' type='radio' name='roomName' value='Blue' onChange={setData} />
                     </div>
                     <button onClick={toggleEdit} name='edit'>EDIT</button>
                 </form>
             </div>
-            <div className='helpInfo'>
-                <p>Click a room name to view information about its facilities. If these don't meet your requirements please click edit to customise your room</p>
-            </div>
+            
             <div className='meetingDetails'>
                 <h3>Meeting Details:</h3>
                 <form method='post' className='clear'>
                     <label>Date:</label>
-                    <input value={paramDate ? paramDate : ''} type='date' name='date' onChange={setData} /><br></br>
+                    <input value={meetingInfo.date} type='date' name='date' onChange={setData} /><br></br>
                     <label>Time:</label>
-                    <input value={paramTime ? paramTime : ''} type='time' name='time' onChange={setData} /><br></br>
+                    <input value={meetingInfo.time} type='time' name='time' onChange={setData} /><br></br>
                     <label>Duration (minutes):</label>
                     <input type='number' name='duration' onChange={setData} /><br></br>
                     <label>Attendees:</label>
@@ -196,7 +197,7 @@ function Book(props) {
             </div>
             <div className='edit-overlay' style={{ display: editOn.edit ? 'block' : 'none', backgroundColor: overlayStyle.backgroundColor }}>
                 <button className='close' onClick={toggleEdit} style={{ backgroundColor: overlayStyle.closeColor2, color: overlayStyle.closeColor1, border: 'none' }}><span>x</span></button>
-                <h3 style={{ color: overlayStyle.closeColor2 }}>Edit the {roomEdits ? (roomEdits.roomName ? roomEdits.roomName.toUpperCase() : '') : ''} room</h3>
+                <h3 style={{ color: overlayStyle.closeColor2 }}>EDIT THE {roomEdits ? (roomEdits.roomName ? roomEdits.roomName.toUpperCase() : '') : ''} ROOM</h3>
                 <form method='post'>
                     <label>TV: </label>
                     <input onChange={setRoomDetail} className='checkbox' checked={roomEdits ? roomEdits.tvScreen : false} type='checkbox' name='tvScreen' /><br></br>
@@ -208,7 +209,7 @@ function Book(props) {
                     <input onChange={setRoomDetail} className='checkbox' checked={roomEdits ? roomEdits.wheelchairAccess : false} type='checkbox' name='wheelchairAccess' /><br></br>
                     <label>Capacity: </label>
                     <input id='inputCapacity' min='1' onChange={setRoomDetail} type='number' name='roomCapacity' value={roomEdits ? roomEdits.roomCapacity : 0} /><br></br>
-                    <button type='submit' onClick={updateRoom} style={{ backgroundColor: overlayStyle.closeColor2, color: overlayStyle.closeColor1, border: 'none', fontWeight: '500' }}>CONFIRM</button>
+                    <button type='submit' onClick={updateRoom} style={{ backgroundColor: overlayStyle.closeColor2, color: overlayStyle.closeColor1, border: 'none'}}>CONFIRM</button>
                 </form>
             </div>
             <div className='message-overlay' style={{ display: response.show ? 'block' : 'none' }}>
