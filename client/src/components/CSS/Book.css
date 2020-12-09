@@ -199,7 +199,7 @@ input[type="radio"] {
     position: absolute;
     width: calc(100% / 2.5);
     padding: 20px;
-    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 100vw;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 1000vw;
     border-radius: 10px; 
     z-index: 2;
     top: 50%;
