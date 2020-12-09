@@ -45,7 +45,7 @@ This will return a JSON encoded object.
 
 An example of how to use this to print out all the rooms:
 returnAllRooms = async () => {
-	await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking')
+	await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/return-rooms')
 	  .then(response => response.json())
 	  .then(data => data.map((item, index) => {
 			console.log(item)
@@ -85,7 +85,7 @@ meetingInfo = {
 	'meetingHost': 'John Smith',
 }
 const addBooking = async () => {
-        await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking', {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/add-booking', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ An example of what will be logged to the console:
 }
 --------------
 UPDATE A ROOM - POST Request
-The last endpoint you can hit will update a rooms specifications
+The next endpoint you can hit will update a rooms specifications
 Each update must have the following data:
 	'roomName': 'Blue',
 	'roomCapacity': 5,
@@ -147,7 +147,7 @@ newRoomSpecifications = {
 	'wheelchairAccess': false,
 }
 const addBooking = async () => {
-        await fetch('https://qf4kxmgf87.execute-api.eu-west-2.amazonaws.com/test/roombooking', {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/update-room', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -167,4 +167,98 @@ An example of what will be logged to the console:
 				{RequestId: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, HTTPStatusCode: 200, HTTPHeaders: {server: Server, date: Thu, 26 Nov 2020 13:56:28 GMT, content-type: application/x-amz-json-1.0, content-length: 147, connection: keep-alive, x-amzn-requestid: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, x-amz-crc32: 722209551}, RetryAttempts: 0}
 			}",
   "message": "Room updated successfully"
+}
+--------------
+ADD A ROOM - POST Request
+The next endpoint you can hit will add a room
+
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/add-room'
+This will return a JSON encoded object
+
+An example of how to use this:
+newRoomSpecifications = {
+	'roomName': 'Purple',
+	'roomCapacity': 5,
+	'phone': true,
+	'projector': false,
+	'tvScreen': true,
+	'wheelchairAccess': false,
+}
+const addRoom = async () => {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/add-room', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "queryStringParameters": newRoomSpecifications }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": "{Attributes: 
+				{projector: false, tvScreen: true, roomCapacity: 10, roomName: Purple, phone: false, wheelchairAccess: false}, 
+			ResponseMetadata:
+				{RequestId: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, HTTPStatusCode: 200, HTTPHeaders: {server: Server, date: Thu, 26 Nov 2020 13:56:28 GMT, content-type: application/x-amz-json-1.0, content-length: 147, connection: keep-alive, x-amzn-requestid: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, x-amz-crc32: 722209551}, RetryAttempts: 0}
+			}",
+  "message": "Room added successfully"
+}
+--------------
+DELETE A BOOKING - POST Request
+The next endpoint you can hit will delete a booking
+
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/delete-booking'
+This will return a JSON encoded object
+
+An example of how to use this:
+const addRoom = async () => {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/delete-booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "queryStringParameters": bookingName }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": "{ResponseMetadata:
+				{RequestId: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, HTTPStatusCode: 200, HTTPHeaders: {server: Server, date: Thu, 26 Nov 2020 13:56:28 GMT, content-type: application/x-amz-json-1.0, content-length: 147, connection: keep-alive, x-amzn-requestid: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, x-amz-crc32: 722209551}, RetryAttempts: 0}
+			}",
+  "message": "Booking deleted successfully"
+}
+--------------
+DELETE A ROOM - POST Request
+The next endpoint you can hit will add a room
+
+The URL required: 'https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/delete-room'
+This will return a JSON encoded object
+
+An example of how to use this:
+const addRoom = async () => {
+        await fetch('https://h6w57dp1q4.execute-api.eu-west-2.amazonaws.com/dev/delete-room', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "queryStringParameters": roomName }),
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+
+An example of what will be logged to the console:
+{
+  "statusCode": 200,
+  "body": "{ResponseMetadata:
+				{RequestId: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, HTTPStatusCode: 200, HTTPHeaders: {server: Server, date: Thu, 26 Nov 2020 13:56:28 GMT, content-type: application/x-amz-json-1.0, content-length: 147, connection: keep-alive, x-amzn-requestid: CLJ33JD0PJI7PHADTFACRENIQVVV4KQNSO5AEMVJF66Q9ASUAAJG, x-amz-crc32: 722209551}, RetryAttempts: 0}
+			}",
+  "message": "Room deleted successfully"
 }
