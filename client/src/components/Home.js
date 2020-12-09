@@ -17,7 +17,15 @@ function Home(props) {
 
     const [overlayStyle, setOverlayStyle] = useState({}); 
     let bookings = [];
-
+    function is_touch_device() {
+        try {
+            document.createEvent('TouchEvent');
+            return true
+        } catch (e) {
+            return false;
+        }
+    }
+    const touch = is_touch_device();
     useEffect(() => {
         props.setNavIcon({icon: 'home'});
         const returnAllBookings = async () => {
@@ -48,7 +56,7 @@ function Home(props) {
     }, []);
 
     const toggleOverlay = (e) => {
-        if (window.innerWidth < 1025) {
+        if (touch) {
             setRoomInfo({ ...roomInfo, viewroom: roomInfo[e.target.getAttribute('id')] });
             // console.log(roomInfo.viewroom)
             if (e.target.getAttribute('id') === 'pink') {
@@ -63,7 +71,7 @@ function Home(props) {
     }
 
     const mouseOver = (e) => {
-        if (window.innerWidth > 1025) {
+        if (!touch) {
             setRoomInfo({ ...roomInfo, viewroom: roomInfo[e.target.getAttribute('id')] });
             // console.log(roomInfo.viewroom)
             if (e.target.getAttribute('id') === 'pink') {
@@ -80,7 +88,7 @@ function Home(props) {
         <React.Fragment>
             <div className='homeComp'>
                 <h1>Meetings Scheduled Today:</h1>
-                <h2>{window.innerWidth > 1025 ? 'Hover over ' : 'Click on '} a room name to see the rooms capabilities</h2>
+                <h2>{touch ? 'Click on ' : 'Hover over '} a room name to see the rooms capabilities</h2>
                 <div className='roomTicket pink'>
                     <h3 id='pink' className='roomName pinkRoom' onMouseEnter={mouseOver} onMouseLeave={mouseOver} onClick={toggleOverlay}>PINK</h3>
                     <div className='roomSchedule pinkSchedule'>

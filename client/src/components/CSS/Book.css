@@ -20,11 +20,6 @@
     box-shadow: 5px 0px 20px #ababab;
     border-top-left-radius: calc(100vw / 10);
 }
-
-element.style {
-}
-div {
-}
 .meetingDetails form div {
     flex: 100%;
 }
@@ -152,32 +147,6 @@ input[type="radio"] {
     left: 5%;
     top: calc(20% + 55vh);
 }
-
-
-@media (max-width: 1024px) and (orientation: portrait){
-    *{
-        box-sizing: border-box;
-    }
-    .bookComp{
-        left: 0;
-        top: 15vh;
-        transform: translate(0%, 0%);
-        position: fixed;
-        overflow: auto;
-        width: 100vw;
-        height: 85vh;
-    }
-    .bookComp h1{
-        top: 0;
-        left: 0;
-        transform: translate(0px, 0px);
-        text-align: center;
-        width: 100vw;
-        margin-top: 10%;
-        position: relative;
-        font-size: calc(100vw / 20);
-    }
-}
 .message-overlay{
     /* border: 1px solid black; */
     background-color: white;
@@ -186,7 +155,7 @@ input[type="radio"] {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
-    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 50vw;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 100vw;
     padding: 20px;
     width: calc(100% / 2.5);
     border-radius: 20px;
@@ -230,7 +199,7 @@ input[type="radio"] {
     position: absolute;
     width: calc(100% / 2.5);
     padding: 20px;
-    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 50vw;
+    box-shadow: rgba(0,0,0,0.6) 0px 0px 0 1000vw;
     border-radius: 10px; 
     z-index: 2;
     top: 50%;
@@ -289,8 +258,388 @@ input[type="radio"] {
     padding: 0;
 }
 
-
-
 button:focus{
     outline: none;
+}
+
+
+@media (max-width: 1024px) and (orientation: portrait){
+    .bookComp *{
+        box-sizing: border-box;
+        position: relative;
+    }
+    .bookComp{
+        left: 0;
+        top: 15vh;
+        transform: translate(0%, 0%);
+        position: fixed;
+        overflow: auto;
+        width: 100vw;
+        height: 85vh;
+    }
+    .bookComp h1{
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 100vw;
+        margin-top: 40px;
+        position: relative;
+        font-size: calc(100vw / 20);
+    }
+    .helpInfo{
+        top: 0;
+        width: 80vw;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-top: 20px;
+    }
+    .helpInfo p{
+        text-align: center;
+        font-size: larger;
+    }
+    .roomSelection{
+        top: 30px;
+        height: auto;
+        width: 90vw;
+        border-radius: 20px;
+    }
+    .roomSelection h3, .meetingDetails h3{
+        text-align: center;
+        font-size: 3.8vw;
+    }
+    .roomSelection form, .meetingDetails form {
+        position: relative;
+        height: auto;
+        top: 0;
+        padding: 2vw;
+        width: 100%;
+    }
+    .roomSelection form .flex{
+        flex: 33.3%;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 2vw;
+    }
+    .roomSelection form .flex label{
+        font-size: 3vw;
+        text-align: center;
+        padding-left: 0;
+    }
+    .roomSelection form .flex input{
+        margin-top: 0.6vw;
+
+    }
+    .roomSelection form button, .meetingDetails form button, .edit-overlay form button, .message-overlay button{
+        margin-top: 4vw;
+        margin-bottom: 1vw;
+        font-size: 3.8vw;
+        width: 15vw;
+    }
+    .meetingDetails{
+        top: 0;
+        margin-top: 70px;
+        height: auto;
+        width: 90vw;
+        border-radius: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-bottom: 50px;
+    }
+    .meetingDetails form label{
+        font-size: 3vw;
+        text-align: left;
+        padding-left: 60px;
+        margin-bottom: 20px;
+    }
+    .meetingDetails form input{
+        font-size: 2.5vw;
+        margin-bottom: 20px;
+        width: 40%;
+    }
+    .meetingDetails form button{
+        width: 25vw;
+    }
+    .bookComp .edit-overlay, .bookComp .roomOverlay{
+        width: 75vw;
+        padding-bottom: 40px;
+    }
+    .bookComp .edit-overlay h3, .bookComp .roomOverlay h3{
+        font-size: 5vw;
+        font-weight: 300;
+    }
+    .bookComp .edit-overlay form label, .bookComp .roomOverlay p{
+        font-size: 3.5vw;
+        margin-bottom: 10px;
+        margin-left: 3vw;
+    }
+    .bookComp .edit-overlay .close, .bookComp .roomOverlay .close{
+        top: -2vw;
+        right: -2vw;
+        height: 6vw;
+        width: 6vw;
+    }
+    .bookComp .edit-overlay .close span, .bookComp .roomOverlay .close span{
+        font-size: 8.9vw;
+    }
+    .bookComp .edit-overlay form label{
+        padding-bottom: 10px;
+    }
+    .bookComp .edit-overlay form input{
+        margin-right: 30px;
+        font-size: 3vw;
+        margin-bottom: 10px;
+        top: 10px;
+    }
+    .bookComp .edit-overlay form input[type='checkbox']{
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        transform: scale(2);
+        /* padding: 10px; */
+        position: relative;
+        box-sizing: content-box;
+    }
+    .edit-overlay form button, .message-overlay button{
+        width: 25vw;
+        font-weight: 300;
+    }
+    .message-overlay{
+        position: absolute;
+        width: 75%;
+    }
+    .message-overlay h1{
+        width: 100%;
+    }
+}
+@media  (max-width: 767px) and (orientation: portrait){
+    .bookComp h1{
+        font-size: 7vw;
+        margin-top: 30px;
+    }
+    .helpInfo p{
+        font-size: small;
+    }
+    .roomSelection, .meetingDetails{
+        width: 100%;
+        border-radius: 0;
+        left: 0;
+        transform: none;
+        padding-top: 10px;
+        padding-bottom: 5px;
+    }
+    .roomSelection h3, .meetingDetails h3 {
+        font-size: 6vw;
+    }
+    .roomSelection form .flex{
+        display: flex;
+    }
+    .roomSelection form .flex label{
+        font-size: 5vw;
+    }
+    .roomSelection form .flex input {
+        float: none; 
+        margin-right: 0px;
+    }
+    .roomSelection form button{
+        font-size: 5vw;
+        width: 20vw;
+    }
+    .meetingDetails form{ 
+        margin-top: 10px;
+    }
+    .meetingDetails form label {
+        font-size: 4vw;
+        padding-left: 20px;
+    }
+    .meetingDetails form input{
+        margin-right: 10px;
+        width: 45%;
+        height: 23px;
+        font-size: 3vw;
+    }
+    .meetingDetails form button{
+        font-size: 5vw;
+        width: 35vw;
+    }
+    .bookComp .edit-overlay, .bookComp .roomOverlay, .bookComp .message-overlay {
+        width: 80%;
+        padding-bottom: 20px;
+    }
+    .bookComp .edit-overlay h3, .bookComp .roomOverlay h3{
+        font-size: 7vw;
+    }
+    .bookComp .edit-overlay form label, .bookComp .roomOverlay p{
+        font-size: 5vw;
+    }
+    .bookComp .edit-overlay form input{
+        font-size: 4vw;
+        margin: 0;
+    }
+    .bookComp .edit-overlay form input[type='checkbox']{
+        -ms-transform: scale(1.2); /* IE */
+        -moz-transform: scale(1.2); /* FF */
+        -webkit-transform: scale(1.2); /* Safari and Chrome */
+        -o-transform: scale(1.2); /* Opera */
+        transform: scale(1.2);
+    }
+    .bookComp .edit-overlay form button{
+        font-size: 5vw;
+        width: 30vw;
+    }
+}
+@media  (max-width: 767px) and (orientation: landscape){
+    .bookComp *{
+        box-sizing: border-box;
+        position: relative;
+        
+    }
+    .bookComp{
+        left: 0;
+        transform: translate(0%, 0%);
+        position: fixed;
+        overflow: auto;
+        width: calc(100vw - (100vw / 8));
+        height: 100vh;
+        left: calc(100vw/ 8);
+        top: 0;
+    }
+    .bookComp h1{
+        top: 0;
+        left: 0;
+        transform: translate(0px, 0px);
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        position: relative;
+        font-size: calc(100vw / 20);
+    }
+    .helpInfo{
+        top: 0;
+        width: 80%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-top: 20px;
+    }
+    .helpInfo p{
+        text-align: center;
+        font-size: small;
+    }
+    .roomSelection{
+        top: 20px;
+        height: auto;
+        width: 90%;
+        border-radius: 20px;
+    }
+    .roomSelection h3, .meetingDetails h3{
+        text-align: center;
+        font-size: 3vw;
+        padding: 3vw;
+    }
+    .roomSelection form, .meetingDetails form {
+        position: relative;
+        height: auto;
+        top: 0;
+        width: 100%;
+    }
+    .roomSelection form .flex{
+        flex: 33.3%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .roomSelection form .flex label{
+        font-size: 3vw;
+        text-align: center;
+        padding-left: 0;
+    }
+    .roomSelection form .flex input{
+        margin-top: 0.4vw;
+
+    }
+    .roomSelection form button, .meetingDetails form button, .edit-overlay form button, .message-overlay button{
+        margin-top: 2.5vw;
+        margin-bottom: 3vw;
+        font-size: 3vw;
+        width: 15vw;
+        height: 6vw;
+    }
+    .meetingDetails{
+        top: 0;
+        margin-top: 50px;
+        height: auto;
+        width: 90%;
+        border-radius: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-bottom: 40px;
+    }
+    .meetingDetails form label{
+        font-size: 2.5vw;
+        text-align: left;
+        padding-left: 60px;
+        margin-bottom: 20px;
+    }
+    .meetingDetails form input{
+        font-size: 2vw;
+        margin-bottom: 20px;
+        height: 25px;
+        width: 40%;
+    }
+    .meetingDetails form button{
+        width: 25vw;
+    }
+    .bookComp .edit-overlay, .bookComp .roomOverlay{
+        width: 70%;
+        padding-bottom: 20px;
+    }
+    .bookComp .edit-overlay h3, .bookComp .roomOverlay h3{
+        font-size: 3vw;
+        font-weight: 300;
+    }
+    .bookComp .edit-overlay form label, .bookComp .roomOverlay p{
+        font-size: 2.5vw;
+        margin-bottom: 10px;
+        margin-left: 3vw;
+    }
+    .bookComp .edit-overlay .close, .bookComp .roomOverlay .close{
+        top: -1.5vw;
+        right: -1.5vw;
+        height: 5vw;
+        width: 5vw;
+    }
+    .bookComp .roomOverlay span{
+        margin-right: 20px;
+    }
+    .bookComp .edit-overlay .close span, .bookComp .roomOverlay .close span{
+        font-size: 7vw;
+    }
+    .bookComp .edit-overlay form label{
+        padding-bottom: 10px;
+    }
+    .bookComp .edit-overlay form input{
+        margin-right: 30px;
+        font-size: 2.5vw;
+    }
+    .bookComp .edit-overlay form input[type='checkbox']{
+        -ms-transform: scale(1.2); /* IE */
+        -moz-transform: scale(1.2); /* FF */
+        -webkit-transform: scale(1.2); /* Safari and Chrome */
+        -o-transform: scale(1.2); /* Opera */
+        transform: scale(1.2);
+        /* padding: 10px; */
+        position: relative;
+        box-sizing: content-box;
+    }
+    .edit-overlay form button, .message-overlay button{
+        width: 25vw;
+        font-weight: 300;
+    }
+    .message-overlay{
+        position: absolute;
+        width: 75%;
+    }
+    .message-overlay h1{
+        width: 100%;
+    }
 }
