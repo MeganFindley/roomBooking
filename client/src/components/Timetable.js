@@ -83,15 +83,19 @@ class Calendar extends Component {
     let today = new Date().toISOString().slice(0, 10);
     return (
       <div className='tableComp'>
+        <div className='timetable-text'>
+          <h1>Weekly View:</h1>
+          <p>Choose a room to view by clicking the buttons below and choose your week via the calander. <br></br>Click any empty slot to book it.</p>
+        </div>
         <div id="timetable-buttons">
-          <button value="Orange" onClick={this.sortData}>
+          <button id='pi'value="Pink" onClick={this.sortData}>
+            PINK
+          </button>
+          <button id='or'value="Orange" onClick={this.sortData}>
             ORANGE
           </button>
-          <button value="Blue" onClick={this.sortData}>
+          <button id='bl'value="Blue" onClick={this.sortData}>
             BLUE
-          </button>
-          <button value="Pink" onClick={this.sortData}>
-            PINK
           </button>
         </div>
         <div style={styles.wrap}>
