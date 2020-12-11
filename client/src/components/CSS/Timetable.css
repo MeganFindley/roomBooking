@@ -59,7 +59,7 @@
   left: 2%;
 }
 .timetable-text h1{
-  font-weight: 300;
+  font-weight: 400;
   text-align: center;
 }
 .timetable-text p{
@@ -148,5 +148,47 @@
   .monthView{
     margin-top: 90vh !important;
     margin-left: 20px !important;
+  }
+}
+@media (max-width: 1025px) and (orientation: portrait){
+  .tableComp{
+    width: 100%;
+    height: 85vh;
+    left: 0;
+    top: 15vh;
+    transform: none;
+    z-index: 1;
+    overflow-y: scroll;
+  }
+  .timetable-text{
+    width: 45%;
+    left: 10vw;
+    top: 5vh;
+  }
+  #timetable-buttons{
+    top: 24vh;
+    left: 10vw;
+    display: flex;
+    justify-content: space-evenly;
+    width: 45%;
+  }
+  .weekView{
+    top: 5vh;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    position: absolute;
+    right: 10vw;
+    margin-top: 0 !important;
+  }
+  .monthView{
+    margin-top: 32vh !important;
+    margin-left: 2vw !important;
+    margin-right: 2vw !important;
+  }
+  .timetable-text p {
+    font-size: 2.6vw;
+  }
+  .timetable-text h1 {
+    font-size: 5.5vw;
   }
 }
