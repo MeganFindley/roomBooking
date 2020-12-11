@@ -32,7 +32,6 @@
 }
 #timetable-buttons button{
   width: 95px;
-  font-size: 1.5vw;
   font-weight: 400;
   height: 40px;
   position: relative;
@@ -42,7 +41,7 @@
   margin-left: 5px;
 }
 .monthView{
-  margin-top: 3vh !important;
+  margin-top: 11.5vh !important;
   margin-left: 0 !important;
   margin-right: 20px !important;
 }
@@ -78,4 +77,76 @@
 #bl{
   background-color: rgb(191, 217, 255); 
   color: rgb(78, 114, 255);
+}
+@media (max-width: 767px) and (orientation: portrait){
+  .tableComp{
+    position: absolute;
+    top: 15vh;
+    height: 85vh;
+    left: 0;
+    transform: none;
+    overflow-y: scroll;
+    width: 100%;
+  }
+  .timetable-text{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%);
+    top: 20px; 
+  }
+  #timetable-buttons{
+    position: absolute;
+    margin-top: 30vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .weekView{
+    position: absolute;
+    top: 0;
+    margin-top: 42vh !important; 
+    margin-left: 0px !important; 
+    margin-right: 0 !important;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .monthView{
+    /* position: absolute; */
+    margin-top: 85vh !important; 
+    margin-left: 0px !important; 
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 823px) and (orientation: landscape){
+  .tableComp{
+    overflow-y: scroll;
+  }
+  .timetable-text{
+    position: absolute;
+    top: 70px;
+    left: 20px;
+    width: 50%;
+  }
+  #timetable-buttons {
+    position: absolute;
+    top: 65vh;
+    left: 3%;
+  }
+  .weekView{
+    position: absolute;
+    right: 35px;
+    top: 60px;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+  }
+  .monthView{
+    margin-top: 90vh !important;
+    margin-left: 20px !important;
+  }
 }
