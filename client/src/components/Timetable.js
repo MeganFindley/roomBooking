@@ -10,12 +10,12 @@ const styles = {
   wrap: {
     display: "flex",
   },
-  left: {
-    width: "200px",
-    marginTop: "15%",
-    marginRight: "40px",
-    marginLeft: "200px",
-  },
+  // left: {
+  //   width: "200px",
+  //   marginTop: "15%",
+  //   marginRight: "40px",
+  //   marginLeft: "200px",
+  // },
   main: {
     flexGrow: "1",
   },
@@ -37,13 +37,14 @@ class Calendar extends Component {
         .then(window.location = window.location.origin + `/book?start=${eStart}&time=${eTime}&room=${eRoom}`)
       },
       eventDeleteHandling: "Disabled",
-      room: '',
+      room: 'Pink',
     };
   }
   componentDidMount() {
     let today = new Date().toISOString().slice(0, 10);
     this.setState({ startDate: today });
     this.props.setNavIcon({ icon: "timetable" });
+    this.fetchBookings('Pink')
   }
 
   fetchBookings = async (buttonName) => {
@@ -76,6 +77,28 @@ class Calendar extends Component {
     this.setState({
       events: bookingsArray,
     });
+    this.setColor(buttonName);
+  };
+  setColor = (buttonName) => {
+    let bookings = document.getElementsByClassName(
+      "calendar_default_event_inner"
+    );
+    // console.log(bookings);
+    for (let i = 0; i < bookings.length; i++) {
+      if (buttonName === "Pink") {
+        bookings[i].style.backgroundColor = "rgb(255, 214, 238)";
+        bookings[i].style.color = "hotpink";
+        bookings[i].style.borderColor = "hotpink";
+      } else if (buttonName === "Orange") {
+        bookings[i].style.backgroundColor = "rgb(255, 226, 182)";
+        bookings[i].style.color = "orange";
+        bookings[i].style.borderColor = "orange";
+      } else if (buttonName === "Blue") {
+        bookings[i].style.backgroundColor = "rgb(191, 217, 255)";
+        bookings[i].style.color = "rgb(78, 114, 255)";
+        bookings[i].style.borderColor = "rgb(78, 114, 255)";
+      }
+    }
   };
 
   render() {
