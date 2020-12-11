@@ -92,9 +92,6 @@
     height: calc(70vh - 80px);
     border-radius: 50px;
 }
-.homeComp .close{
-    display: none;
-}
 .roomOverlay p span{
     float: right;
     margin-right: 0;
