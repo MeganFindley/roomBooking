@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import './CSS/Book.css'
 
 function Book(props) {
@@ -112,9 +112,11 @@ function Book(props) {
     const okResponse = (e) => {
         e.preventDefault();
         setResponse({ ...response, show: false });
+        console.log(window.location.origin);
         if (response.message === 'Room updated successfully') { }
         else if (response.message.slice(0, 5) !== 'Sorry') {
-            window.location = window.location.origin + '/roomBooking';
+            // window.location = window.location.origin;
+            <Redirect to="/" />
         }
     }
     let rooms = [];
