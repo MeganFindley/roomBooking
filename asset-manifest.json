@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/roomBooking/static/css/main.fd4eed6c.chunk.css",
+    "main.js": "/roomBooking/static/js/main.c819d69b.chunk.js",
+    "main.js.map": "/roomBooking/static/js/main.c819d69b.chunk.js.map",
+    "runtime-main.js": "/roomBooking/static/js/runtime-main.3e7052eb.js",
+    "runtime-main.js.map": "/roomBooking/static/js/runtime-main.3e7052eb.js.map",
+    "static/js/2.3eedc663.chunk.js": "/roomBooking/static/js/2.3eedc663.chunk.js",
+    "static/js/2.3eedc663.chunk.js.map": "/roomBooking/static/js/2.3eedc663.chunk.js.map",
+    "index.html": "/roomBooking/index.html",
+    "static/css/main.fd4eed6c.chunk.css.map": "/roomBooking/static/css/main.fd4eed6c.chunk.css.map",
+    "static/js/2.3eedc663.chunk.js.LICENSE.txt": "/roomBooking/static/js/2.3eedc663.chunk.js.LICENSE.txt",
+    "static/media/book-filled.315c5956.svg": "/roomBooking/static/media/book-filled.315c5956.svg",
+    "static/media/book.e0eb00de.svg": "/roomBooking/static/media/book.e0eb00de.svg",
+    "static/media/home-filled.9b42cc65.svg": "/roomBooking/static/media/home-filled.9b42cc65.svg",
+    "static/media/home.ffd1aa21.svg": "/roomBooking/static/media/home.ffd1aa21.svg",
+    "static/media/timetable-filled.f013dec1.svg": "/roomBooking/static/media/timetable-filled.f013dec1.svg",
+    "static/media/timetable.efac5b06.svg": "/roomBooking/static/media/timetable.efac5b06.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3e7052eb.js",
+    "static/js/2.3eedc663.chunk.js",
+    "static/css/main.fd4eed6c.chunk.css",
+    "static/js/main.c819d69b.chunk.js"
+  ]
+}
