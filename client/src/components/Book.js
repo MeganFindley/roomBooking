@@ -114,7 +114,7 @@ function Book(props) {
         setResponse({ ...response, show: false });
         if (response.message === 'Room updated successfully') { }
         else if (response.message.slice(0, 5) !== 'Sorry') {
-            window.location = window.location.origin;
+            // window.location = window.location.origin;
         }
     }
     let rooms = [];

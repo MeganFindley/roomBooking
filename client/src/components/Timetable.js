@@ -28,14 +28,14 @@ class Calendar extends Component {
       viewType: "Week",
       durationBarVisible: false,
       timeRangeSelectedHandling: "Enabled",
-      onTimeRangeSelected: (args) => {
-        console.log(args.start.value)
-        let eStart = args.start.value.slice(0, 10);
-        let eTime = args.start.value.slice(11, 16);
-        let eRoom = this.state.room;
-        DayPilot.Modal.alert('Redirecting to booking page')
-        .then(window.location = window.location.origin + `/book?start=${eStart}&time=${eTime}&room=${eRoom}`)
-      },
+      // onTimeRangeSelected: (args) => {
+      //   console.log(args.start.value)
+      //   let eStart = args.start.value.slice(0, 10);
+      //   let eTime = args.start.value.slice(11, 16);
+      //   let eRoom = this.state.room;
+      //   DayPilot.Modal.alert('Redirecting to booking page')
+      //   .then(window.location = window.location.origin + `/book?start=${eStart}&time=${eTime}&room=${eRoom}`)
+      // },
       eventDeleteHandling: "Disabled",
       room: 'Pink',
     };
